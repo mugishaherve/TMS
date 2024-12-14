@@ -1,0 +1,131 @@
+{% load form_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .primary-color {
+            color: #2D3748;
+        }
+
+        /* Darker shade for text */
+        .primary-bg {
+            background-color: #4A90E2;
+        }
+
+        /* Soft blue for background */
+        .button-bg {
+            background-color: #38B2AC;
+        }
+
+        /* Light teal for buttons */
+        .button-hover {
+            background-color: #319795;
+        }
+
+        /* Darker teal on hover */
+        .form-container {
+            max-width: 500px;
+        }
+
+        /* Control form container width */
+        .input-field {
+            border-radius: 8px;
+            padding: 12px;
+            border: 2px solid #E2E8F0;
+            width: 100%;
+        }
+
+        /* Style input fields */
+        .input-focus:focus {
+            border-color: #38B2AC;
+            outline: none;
+        }
+
+        /* Focus effect */
+        .card-shadow {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Card shadow */
+    </style>
+</head>
+
+<body class="bg-gray-50 flex items-center justify-center h-screen">
+
+    <div class="form-container bg-white rounded-lg p-8 card-shadow">
+        <h2 class="text-3xl font-bold text-center primary-color mb-8">Create a new account</h2>
+
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <div class="flex gap-4">
+                <div class="flex-1">
+                    <label class="block text-gray-700 font-semibold">First Name</label>
+                    <input type="text" name="first_name" value="{{ form.first_name.value }}"
+                        class="input-field input-focus" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-gray-700 font-semibold">Last Name</label>
+                    <input type="text" name="last_name" value="{{ form.last_name.value }}"
+                        class="input-field input-focus" required>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-gray-700 font-semibold">Email</label>
+                <input type="email" name="email" value="{{ form.email.value }}" class="input-field input-focus"
+                    required>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-gray-700 font-semibold">Phone</label>
+                <input type="text" name="phone" value="{{ form.phone.value }}" class="input-field input-focus" required>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-gray-700 font-semibold">Province</label>
+                <input type="text" name="province" value="{{ form.province.value }}" class="input-field input-focus"
+                    required>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-gray-700 font-semibold">Sector</label>
+                <input type="text" name="sector" value="{{ form.sector.value }}" class="input-field input-focus"
+                    required>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-gray-700 font-semibold">Password</label>
+                <input type="password" name="password1" value="{{ form.password1.value }}"
+                    class="input-field input-focus" required>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-gray-700 font-semibold">Confirm Password</label>
+                <input type="password" name="password2" value="{{ form.password2.value }}"
+                    class="input-field input-focus" required>
+            </div>
+
+            <button type="submit"
+                class="button-bg text-white w-full py-3 rounded font-semibold hover:button-hover transition duration-300">Register</button>
+        </form>
+
+        <p class="mt-6 text-center text-gray-600">Already have an account? <a href="{% url 'login' %}"
+                class="primary-color font-semibold hover:text-indigo-600 transition duration-300">Log in</a></p>
+    </div>
+
+    <div class="flex-1">
+        <img src="https://thumbs.dreamstime.com/b/fundraising-donations-charity-foundation-support-concept-diverse-people-85879948.jpg"
+            class="w-full object-cover" />
+    </div>
+
+</body>
+
+</html>
